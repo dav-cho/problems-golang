@@ -6,6 +6,7 @@ package main
 
 import "math"
 
+// dp optimized
 func rob(nums []int) int {
 	prev, curr := 0, 0
 
@@ -16,6 +17,7 @@ func rob(nums []int) int {
 	return curr
 }
 
+// dp
 func rob(nums []int) int {
 	n := len(nums)
 	memo := map[int]int{n - 1: nums[n-1], n: 0}
@@ -27,4 +29,28 @@ func rob(nums []int) int {
 	}
 
 	return memo[0]
+}
+
+// recursive with memoization
+func rob(nums []int) int {
+	memo := make(map[int]int)
+
+	var helper func(i int) int
+	helper = func(i int) int {
+		if i >= len(nums) {
+			return 0
+		}
+		if v, ok := memo[i]; ok {
+			return v
+		}
+
+		a := float64(helper(i + 1))
+		b := float64(helper(i+2) + nums[i])
+
+		memo[i] = int(math.Max(a, b))
+
+		return memo[i]
+	}
+
+	return helper(0)
 }
