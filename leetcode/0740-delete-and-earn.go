@@ -8,23 +8,27 @@ import "math"
 
 func deleteAndEarn(nums []int) int {
 	counts := make(map[int]int)
-	max := int(math.Inf(-1))
-	for _, num := range nums {
-		counts[num]++
-		if num > max {
-			max = num
+	max := -math.MaxInt
+
+	for _, v := range nums {
+		counts[v]++
+
+		if v > max {
+			max = v
 		}
 	}
 
 	points := make([]int, max+1)
+
 	for k, v := range counts {
 		points[k] = k * v
 	}
 
-	prev, curr := 0, 0
-	for _, p := range points {
-		prev, curr = curr, int(math.Max(float64(curr), float64(prev+p)))
+	p, c := 0, 0
+
+	for _, v := range points {
+		p, c = c, int(math.Max(float64(c), float64(p+v)))
 	}
 
-	return curr
+	return c
 }
