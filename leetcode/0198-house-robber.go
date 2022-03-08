@@ -18,7 +18,7 @@ func rob(nums []int) int {
 }
 
 // dp
-func rob(nums []int) int {
+func rob1(nums []int) int {
 	n := len(nums)
 	memo := map[int]int{n - 1: nums[n-1], n: 0}
 
@@ -32,7 +32,7 @@ func rob(nums []int) int {
 }
 
 // recursive with memoization
-func rob(nums []int) int {
+func rob2(nums []int) int {
 	memo := make(map[int]int)
 
 	var helper func(i int) int
