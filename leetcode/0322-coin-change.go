@@ -10,6 +10,14 @@ import (
 
 // bottom-up dp
 func coinChange1(coins []int, amount int) int {
+	min := func(x, y int) int {
+		if x < y {
+			return x
+		}
+
+		return y
+	}
+
 	dp := make([]int, amount+1)
 	for i := range dp {
 		dp[i] = math.MaxInt32
