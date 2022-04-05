@@ -3,25 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	type param struct {
-		s       string
-		numRows int
-		ans     string
+	tests := [][]int{
+		{1, 2, 3, 1},
+		{1, 2, 3, 4},
+		{1, 1, 1, 3, 3, 4, 3, 2, 4, 2},
 	}
+	answers := []bool{true, false, true}
+	failed := 0
 
-	tests := []param{
-		{"PAYPALISHIRING", 3, "PAHNAPLSIIGYIR"},
-		{"PAYPALISHIRING", 4, "PINALSIGYAHRPI"},
-		{"A", 1, "A"},
-	}
-
-	for _, v := range tests {
-		ret := convert(v.s, v.numRows)
-		if ret != v.ans {
-			fmt.Printf("Wrong Answer: %s != %s\n", ret, v.ans)
-			return
+	for i := 0; i < len(tests); i++ {
+		res := containsDuplicate(tests[i])
+		ans := answers[i]
+		if res != ans {
+			failed++
 		}
 	}
 
-	fmt.Println("~ OK")
+	if failed == 0 {
+		fmt.Println("OK")
+	} else {
+		fmt.Printf("Failed %d", failed)
+	}
 }
