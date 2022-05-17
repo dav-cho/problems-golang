@@ -16,11 +16,6 @@ func findCircleNum(isConnected [][]int) int {
 		}
 	}
 
-	m := make(map[int]bool)
-	for i := range uf.root {
-		m[uf.find(i)] = true
-	}
-
 	return uf.count
 }
 
